@@ -1,4 +1,4 @@
-# Mulimedia-Search
+# Multimedia-Search
 # Authors: 
 Stephanie Stelzer and Sara Osmanovic
 # Problem: 
