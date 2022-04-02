@@ -1,5 +1,6 @@
 # Mulimedia-Search
-# Authors: Stephanie Stelzer and Sara Osmanovic
+# Authors: 
+Stephanie Stelzer and Sara Osmanovic
 # Problem: 
 We want to help people find appropriate entertainment based on what they are in the mood to watch, read, or listen to.
 # Motivation: 
