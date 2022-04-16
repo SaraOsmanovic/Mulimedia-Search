@@ -9,5 +9,5 @@ This is a problem because of the information overload and over-saturation of our
 When implemented correctly, our program will work within filters to bring the user different options based on their inputted preferences. 
 Ex: user wants to watch a movie; only movie options will be shown, not books, audio books, or any other forms of media.
 Media Categories: Books/AudioBooks, Movies, Podcasts
-#Google Docs file:
+# Google Docs file:
 https://docs.google.com/document/d/1I0KQJJblR7QopSdB8mNHVGyvhQJYhCtk49ohfrnIwuU/edit?usp=sharing 
