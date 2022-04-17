@@ -3,6 +3,7 @@
 //
 
 #include "Books.h"
+using namespace std;
 
 Books::Books() {
     ifstream b("../data/books_p3.txt");
@@ -92,6 +93,12 @@ void Books::createRatings() {
         if (books.at(i)->getAverageRating() >= 4) {
             rating.at(4).push_back(books.at(i));
         }
+    }
+}
+
+void Books::printTitles() {
+    for(int i = 0; i < this->books.size(); i++){
+        cout << books.at(i)->getTitle() << endl;
     }
 }
 

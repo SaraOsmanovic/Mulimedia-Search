@@ -3,6 +3,7 @@
 #include "Book.h"
 #include <unordered_map>
 #include <fstream>
+#include <iostream>
 
 class Books {
     vector<Book*> books;
@@ -14,6 +15,7 @@ public:
     Books();
     ~Books();
 
+    void printTitles();
     void createGenres();
     void createReleases();
     void createRatings();

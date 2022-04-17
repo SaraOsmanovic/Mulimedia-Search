@@ -25,7 +25,6 @@ public:
     int getRatingsCount();
     string& getIsbn13();
     double getAverageRating();
-
     bool hasGenre(const string& target);
     bool hasAuthors(const string& target);
 };
