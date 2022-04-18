@@ -4,7 +4,6 @@
 #include "Media Types/Header/Books.h"
 #include "Media Types/Header/Podcasts.h"
 #include "Media Types/Header/Movies.h"
-#include "AVLTree.h"
 #include <set>
 
 using namespace std;
