@@ -58,13 +58,13 @@ set<T, CMP, ALLOC> operator+(set<T, CMP, ALLOC>& lhs, set<T, CMP, ALLOC>& rhs) {
 
 Media::Media(int m, int g, int r, int y, string& order) {
     switch (m) {
-        case 1:
+        case 3:
             movies(g, r, y, order);
             break;
-        case 2:
+        case 1:
             books(g, r, y, order);
             break;
-        case 3:
+        case 2:
             podcasts(g, r, order);
             break;
     }
@@ -130,12 +130,9 @@ void Media::books(int g, int r, int y, string& order) {
         third = third / second;
     }
 
-    AVLTree<Book> *media = new AVLTree<Book>(first);
-    delete media;
-    media = new AVLTree<Book>(second);
-    delete media;
-    media = new AVLTree<Book>(third);
-    delete media;
+    heap<Book> f(first);
+    heap<Book> s(second);
+    heap<Book> t(third);
 }
 
 void Media::movies(int g, int r, int y, string &order) {
@@ -198,12 +195,9 @@ void Media::movies(int g, int r, int y, string &order) {
         third = third / second;
     }
 
-    AVLTree<Movie> *media = new AVLTree<Movie>(first);
-    delete media;
-    media = new AVLTree<Movie>(second);
-    delete media;
-    media = new AVLTree<Movie>(third);
-    delete media;
+    heap<Movie> f(first);
+    heap<Movie> s(second);
+    heap<Movie> t(third);
 }
 
 void Media::podcasts(int g, int r, string &order) {
@@ -228,8 +222,7 @@ void Media::podcasts(int g, int r, string &order) {
         second = rat / first;
     }
 
-    AVLTree<Podcast> *media = new AVLTree<Podcast>(first);
-    delete media;
-    media = new AVLTree<Podcast>(second);
-    delete media;
+    heap<Podcast> f(first);
+    heap<Podcast> s(second);
 }
+
