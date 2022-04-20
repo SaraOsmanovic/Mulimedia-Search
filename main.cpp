@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include "Media.h"
+#include <fstream>
 
 using namespace std;
 

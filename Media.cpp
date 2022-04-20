@@ -75,6 +75,7 @@ void Media::books(int g, int r, int y, string& order) {
     set<Book*> gen;
     set<Book*> rat;
     set<Book*> pyr;
+    ofstream outfile("../OutFiles/Book_Results_HeapSort.txt");
 
     string genre = books_list->getGenresList().at(g);
     for (int i = 0; i < books_list->getGenres().at(genre).size(); ++i) {
@@ -91,6 +92,7 @@ void Media::books(int g, int r, int y, string& order) {
     first = first * pyr;
     set<Book*> second;
     set<Book*> third;
+    string firstP, secondP, thirdP;
 
     if (order == "gry") {
         second = gen * rat;
@@ -98,41 +100,64 @@ void Media::books(int g, int r, int y, string& order) {
 
         third = gen / first;
         third = third / second;
+        firstP = "genre";
+        secondP = "rating";
+        thirdP = "release year";
     } else if (order == "gyr") {
         second = gen * pyr;
         second = second / first;
 
         third = gen / first;
         third = third / second;
+        firstP = "genre";
+        secondP = "release year";
+        thirdP = "rating";
     } else if (order == "rgy") {
         second = gen * rat;
         second = second / first;
 
         third = rat / first;
         third = third / second;
+        firstP = "rating";
+        secondP = "genre";
+        thirdP = "release year";
     } else if (order == "ryg") {
         second = pyr * rat;
         second = second / first;
 
         third = rat / first;
         third = third / second;
+        firstP = "rating";
+        secondP = "release year";
+        thirdP = "genre";
     } else if (order == "ygr") {
         second = pyr * gen;
         second = second / first;
 
         third = pyr / first;
         third = third / second;
+        firstP = "release year";
+        secondP = "genre";
+        thirdP = "rating";
     } else if (order == "yrg") {
         second = pyr * rat;
         second = second / first;
 
         third = pyr / first;
         third = third / second;
+        firstP = "release year";
+        secondP = "rating";
+        thirdP = "genre";
     }
 
-    heap<Book> f(first);
-    heap<Book> s(second);
-    heap<Book> t(third);
+    outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+    heap<Book> f(first, outfile);
+    outfile << "The books that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+    heap<Book> s(second, outfile);
+    outfile << "The books that have your choice of " << firstP << ": " << endl << endl;
+    heap<Book> t(third, outfile);
+    outfile.close();
+    delete books_list;
 }
 
 void Media::movies(int g, int r, int y, string &order) {
@@ -140,6 +165,7 @@ void Media::movies(int g, int r, int y, string &order) {
     set<Movie*> gen;
     set<Movie*> rat;
     set<Movie*> pyr;
+    ofstream outfile("../OutFiles/Movie_Results_HeapSort.txt");
 
     string genre = movies_list->getGenreList().at(g);
     for (int i = 0; i < movies_list->getGenres().at(genre).size(); ++i) {
@@ -156,6 +182,7 @@ void Media::movies(int g, int r, int y, string &order) {
     first = first * pyr;
     set<Movie*> second;
     set<Movie*> third;
+    string firstP, secondP, thirdP;
 
     if (order == "gry") {
         second = gen * rat;
@@ -163,47 +190,72 @@ void Media::movies(int g, int r, int y, string &order) {
 
         third = gen / first;
         third = third / second;
+        firstP = "genre";
+        secondP = "rating";
+        thirdP = "release year";
     } else if (order == "gyr") {
         second = gen * pyr;
         second = second / first;
 
         third = gen / first;
         third = third / second;
+        firstP = "genre";
+        secondP = "release year";
+        thirdP = "rating";
     } else if (order == "rgy") {
         second = gen * rat;
         second = second / first;
 
         third = rat / first;
         third = third / second;
+        firstP = "rating";
+        secondP = "genre";
+        thirdP = "release year";
     } else if (order == "ryg") {
         second = pyr * rat;
         second = second / first;
 
         third = rat / first;
         third = third / second;
+        firstP = "rating";
+        secondP = "release year";
+        thirdP = "genre";
     } else if (order == "ygr") {
         second = pyr * gen;
         second = second / first;
 
         third = pyr / first;
         third = third / second;
+        firstP = "release year";
+        secondP = "genre";
+        thirdP = "rating";
     } else if (order == "yrg") {
         second = pyr * rat;
         second = second / first;
 
         third = pyr / first;
         third = third / second;
+        firstP = "release year";
+        secondP = "rating";
+        thirdP = "genre";
     }
-
-    heap<Movie> f(first);
-    heap<Movie> s(second);
-    heap<Movie> t(third);
+    outfile << "The movies that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+    heap<Movie> f(first, outfile);
+    outfile << "The movies that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+    heap<Movie> s(second, outfile);
+    outfile << "The movies that have your choice of " << firstP << ": " << endl << endl;
+    heap<Movie> t(third, outfile);
+    outfile.close();
+    delete movies_list;
 }
 
 void Media::podcasts(int g, int r, string &order) {
     Podcasts *podcasts_list = new Podcasts();
     set<Podcast*> gen;
     set<Podcast*> rat;
+    ofstream outfile("../OutFiles/Podcast_Results_HeapSort.txt");
+
+    string firstP, secondP;
 
     string genre = podcasts_list->getGenreList().at(g);
     for (int i = 0; i < podcasts_list->getGenres().at(genre).size(); ++i) {
@@ -218,11 +270,19 @@ void Media::podcasts(int g, int r, string &order) {
 
     if (order == "gr") {
         second = gen / first;
+        firstP = "genre";
+        secondP = "rating";
     } else if (order == "rg") {
         second = rat / first;
+        firstP = "rating";
+        secondP = "genre";
     }
 
-    heap<Podcast> f(first);
-    heap<Podcast> s(second);
+    outfile << "The podcasts that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+    heap<Podcast> f(first, outfile);
+    outfile << "The podcasts that have your choice of " << firstP << ": " << endl << endl;
+    heap<Podcast> s(second, outfile);
+    outfile.close();
+    delete podcasts_list;
 }
 

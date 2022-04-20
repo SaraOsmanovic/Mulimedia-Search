@@ -11,12 +11,14 @@ template<class T>
 struct heap {
     vector<T*> h;
     int s = 0;
-    heap(set<T*> data) {
+    heap(set<T*> data, ofstream& outfile) {
         for (auto i = data.begin(); i != data.end(); ++i) {
             insertEl(*i);
         }
         while (s > 0) {
-            popMin()->print();
+            T* out = popMin();
+            out->print(outfile);
+            delete out;
         }
     }
     void insertEl(T* newEl) {
@@ -56,9 +58,9 @@ struct heap {
         if (2 * i + 2 < s) {
             r = h.at(2 * i + 2);
         } else {
-            r = h.at(i);
+            r = nullptr;
         }
-        if (r == h.at(i)) {
+        if (r == nullptr) {
             if (*h.at(i) > *h.at(i * 2 + 1)) {
                 T* temp = h.at(i);
                 h.at(i) = h.at(i * 2 + 1);
@@ -76,10 +78,12 @@ struct heap {
                 heapifyDown(i * 2 + 1);
             }
         } else if (*l > *r) {
-            T* temp = h.at(i);
-            h.at(i) = r;
-            h.at(i * 2 + 2) = temp;
-            heapifyDown(i * 2 + 2);
+            if (*h.at(i) > *r) {
+                T* temp = h.at(i);
+                h.at(i) = r;
+                h.at(i * 2 + 2) = temp;
+                heapifyDown(i * 2 + 2);
+            }
         }
     }
     T* at(int i) {
@@ -94,9 +98,6 @@ class Media {
     void books(int g, int r, int y, string& order);
     void movies(int g, int r, int y, string& order);
     void podcasts(int g, int r, string& order);
-
-    template<typename T>
-    void mergeSort(set<T*> data);
 
 public:
     Media(int m, int g, int r, int y, string& order);
