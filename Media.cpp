@@ -56,7 +56,8 @@ set<T, CMP, ALLOC> operator+(set<T, CMP, ALLOC>& lhs, set<T, CMP, ALLOC>& rhs) {
     return u;
 }
 
-Media::Media(int m, int g, int r, int y, string& order) {
+Media::Media(int m, int g, int r, int y, string& order, int sort) {
+    this->sort = sort;
     switch (m) {
         case 3:
             movies(g, r, y, order);
@@ -150,12 +151,45 @@ void Media::books(int g, int r, int y, string& order) {
         thirdP = "genre";
     }
 
-    outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
-    heap<Book> f(first, outfile);
-    outfile << "The books that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
-    heap<Book> s(second, outfile);
-    outfile << "The books that have your choice of " << firstP << ": " << endl << endl;
-    heap<Book> t(third, outfile);
+    if (sort == 0) {
+        outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Book> f(first, outfile);
+        }
+        outfile << "The books that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Book> s(second, outfile);
+        }
+        outfile << "The books that have your choice of " << firstP << ": " << endl << endl;
+        if (third.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Book> t(third, outfile);
+        }
+    } else {
+        outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Book> f(first, outfile);
+        }
+        outfile << "The books that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Book> s(second, outfile);
+        }
+        outfile << "The books that have your choice of " << firstP << ": " << endl << endl;
+        if (third.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Book> t(third, outfile);
+        }
+    }
     outfile.close();
     delete books_list;
 }
