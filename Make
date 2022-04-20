@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.21)
+project(Multimedia_Search)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(Multimedia_Search main.cpp "Media Types/Src/Movies.cpp" "Media Types/Src/Movie.cpp" "Media Types/Src/Podcast.cpp" "Media Types/Header/Podcast.h" "Media Types/Src/Podcasts.cpp" "Media Types/Header/Podcasts.h" "Media Types/Src/Book.cpp" "Media Types/Header/Book.h" "Media Types/Src/Books.cpp" "Media Types/Header/Books.h" Media.cpp Media.h AVLTree.h)
