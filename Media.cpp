@@ -76,7 +76,7 @@ void Media::books(int g, int r, int y, string& order) {
     set<Book*> gen;
     set<Book*> rat;
     set<Book*> pyr;
-    ofstream outfile("../OutFiles/Book_Results_HeapSort.txt");
+    ofstream outfile;
 
     string genre = books_list->getGenresList().at(g);
     for (int i = 0; i < books_list->getGenres().at(genre).size(); ++i) {
@@ -152,6 +152,7 @@ void Media::books(int g, int r, int y, string& order) {
     }
 
     if (sort == 0) {
+        outfile.open(("../OutFiles/Book_Results_HeapSort.txt"));
         outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
         if (first.size() == 0) {
             outfile << "None found" << endl;
@@ -171,6 +172,7 @@ void Media::books(int g, int r, int y, string& order) {
             heap<Book> t(third, outfile);
         }
     } else {
+        outfile.open(("../OutFiles/Book_Results_MergeSort.txt"));
         outfile << "The books that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
         if (first.size() == 0) {
             outfile << "None found" << endl;
@@ -199,7 +201,7 @@ void Media::movies(int g, int r, int y, string &order) {
     set<Movie*> gen;
     set<Movie*> rat;
     set<Movie*> pyr;
-    ofstream outfile("../OutFiles/Movie_Results_HeapSort.txt");
+    ofstream outfile;
 
     string genre = movies_list->getGenreList().at(g);
     for (int i = 0; i < movies_list->getGenres().at(genre).size(); ++i) {
@@ -273,12 +275,47 @@ void Media::movies(int g, int r, int y, string &order) {
         secondP = "rating";
         thirdP = "genre";
     }
-    outfile << "The movies that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
-    heap<Movie> f(first, outfile);
-    outfile << "The movies that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
-    heap<Movie> s(second, outfile);
-    outfile << "The movies that have your choice of " << firstP << ": " << endl << endl;
-    heap<Movie> t(third, outfile);
+    if (sort == 0) {
+        outfile.open(("../OutFiles/Movie_Results_HeapSort.txt"));
+        outfile << "The movies that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Movie> f(first, outfile);
+        }
+        outfile << "The movies that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Movie> s(second, outfile);
+        }
+        outfile << "The movies that have your choice of " << firstP << ": " << endl << endl;
+        if (third.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Movie> t(third, outfile);
+        }
+    } else {
+        outfile.open(("../OutFiles/Movie_Results_MergeSort.txt"));
+        outfile << "The movies that have your choice of " << firstP << ", " << secondP << ", and " << thirdP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Movie> f(first, outfile);
+        }
+        outfile << "The movies that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Movie> s(second, outfile);
+        }
+        outfile << "The movies that have your choice of " << firstP << ": " << endl << endl;
+        if (third.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Movie> t(third, outfile);
+        }
+    }
     outfile.close();
     delete movies_list;
 }
@@ -312,10 +349,35 @@ void Media::podcasts(int g, int r, string &order) {
         secondP = "genre";
     }
 
-    outfile << "The podcasts that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
-    heap<Podcast> f(first, outfile);
-    outfile << "The podcasts that have your choice of " << firstP << ": " << endl << endl;
-    heap<Podcast> s(second, outfile);
+    if (sort == 0) {
+        outfile.open(("../OutFiles/Podcast_Results_HeapSort.txt"));
+        outfile << "The podcasts that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Podcast> f(first, outfile);
+        }
+        outfile << "The movies that have your choice of " << firstP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            heap<Podcast> s(second, outfile);
+        }
+    } else {
+        outfile.open(("../OutFiles/Podcast_Results_MergeSort.txt"));
+        outfile << "The podcasts that have your choice of " << firstP << " and " << secondP << ": " << endl << endl;
+        if (first.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Podcast> f(first, outfile);
+        }
+        outfile << "The podcasts that have your choice of " << firstP << ": " << endl << endl;
+        if (second.size() == 0) {
+            outfile << "None found" << endl;
+        } else {
+            MergeSort<Podcast> s(second, outfile);
+        }
+    }
     outfile.close();
     delete podcasts_list;
 }

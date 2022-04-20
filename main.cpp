@@ -2,7 +2,6 @@
 #include <map>
 #include <string>
 #include "Media.h"
-#include <fstream>
 
 using namespace std;
 
@@ -88,8 +87,12 @@ int main() {
         j += 25;
     }
     cin >> pd;
+    int sort = 0;
+    cout << endl << "Choose your sorting algorithm: " << endl;
+    cout << 0 << ". Heap sort" << endl;
+    cout << 1 << ". Merge sort" << endl;
 
-    Media(medium, g, r, pd, o);
+    Media(medium, g, r, pd, o, sort);
 
 
     return 0;
