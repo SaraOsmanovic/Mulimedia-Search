@@ -94,6 +94,83 @@ struct heap {
     }
 };
 
+// merge sort code
+template <class T>
+struct MergeSort{
+    vector<T*> m;
+    MergeSort(set<T*> data){
+        for (auto i = data.begin(); i != data.end(); ++i) {
+            m.push_back(*i);
+        }
+    }
+    MergeSort(){
+
+    }
+    // data to be sorted
+    void mergeSort(vector<T*> data, int l, int r);
+    void merge(vector<T*> data, int l, int mid, int r);
+};
+
+
+// this code was taken from Professor Kapoor's Module 6 slides
+// this is to sort the data in alphabetical order
+template<class T>
+void MergeSort<T>::mergeSort(vector<T*> data, int l, int r) {
+    if(l < r){
+        int mid = l + (r - l) / 2;
+        // call recursion on the list
+        mergeSort(data, left, mid);
+        mergeSort(data, mid + 1, right);
+        // once the data has been sorted, it needs to be merged
+        merge(data, l, mid, r);
+    }
+}
+
+template<class T>
+void MergeSort<T>::merge(vector<T*> data, int l, int mid, int r) {
+    // get starting points
+    int n1 = mid - l + 1;
+    int n2 = r - mid;
+    // create the two sub arrays for merging
+    int X[n1], Y[n2];
+
+    for(int i = 0; i < n1; i++){
+        X[i] = data[l + 1];
+    }
+    for(int j = 0; j < n2; j++){
+        Y[j] = data[mid + 1 + j];
+    }
+    // merge arrays X and Y
+    int i, j, k;
+    i = 0;
+    j = 0;
+    k = l;
+
+    while(i < n1 && j < n2){
+        if(X[i] <= Y[j]){
+            data[k] = X[i];
+            i++;
+        }
+        else{
+            data[k] = Y[j];
+            j++;
+        }
+        k++;
+    }
+
+    while(i < n1){
+        data[k] = X[i];
+        i++;
+        k++;
+    }
+    while(j < n2){
+        data[k] = Y[j];
+        j++;
+        k++;
+    }
+}
+
+
 class Media {
     void books(int g, int r, int y, string& order);
     void movies(int g, int r, int y, string& order);
