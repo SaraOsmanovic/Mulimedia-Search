@@ -154,20 +154,20 @@ bool Movie::hasGenre(string &genre) {
     return false;
 }
 
-void Movie::print() {
-    cout << fixed;
-    cout << setprecision(2);
-    cout << "Title: " << title << " ~ " << tagline << endl;
-    cout << "Description: " << overview << endl;
-    cout << "Original language: " << original_language << " Production country " << production_country << endl;
+void Movie::print(ofstream& outfile) {
+    outfile << fixed;
+    outfile << setprecision(2);
+    outfile << "Title: " << title << " ~ " << tagline << endl;
+    outfile << "Description: " << overview << endl;
+    outfile << "Original language: " << original_language << " Production country " << production_country << endl;
 
-    cout << endl << "Production companies: ";
+    outfile << endl << "Production companies: ";
     for (int i = 0; i < 4; ++i) {
-        cout << production_companies[i] << " ";
+        outfile << production_companies[i] << " ";
     }
-    cout << endl << "Rating: " << vote_average << " (" << vote_count << ")" << endl;
+    outfile << endl << "Rating: " << vote_average << " (" << vote_count << ")" << endl;
     for (int i = 0; i < 4; ++i) {
-        cout << genres[i] << " ";
+        outfile << genres[i] << " ";
     }
-    cout << endl << "---------------------" << endl << endl;
+    outfile << endl << "---------------------" << endl << endl;
 }

@@ -68,12 +68,12 @@ bool Podcast::operator<(const Podcast &rhs) {
     return false;
 }
 
-void Podcast::print() {
-    cout << fixed;
-    cout << setprecision(2);
-    cout << "Title: " << title << endl;
-    cout << "Description: " << description << endl;
-    cout << "Rating: " << rating << " (" << rating_volume << ")" << endl;
-    cout << "Genre: " << genre << endl;
-    cout << "---------------" << endl;
+void Podcast::print(ofstream& outfile) {
+    outfile << fixed;
+    outfile << setprecision(2);
+    outfile << "Title: " << title << endl;
+    outfile << "Description: " << description << endl;
+    outfile << "Rating: " << rating << " (" << rating_volume << ")" << endl;
+    outfile << "Genre: " << genre << endl;
+    outfile << "---------------" << endl;
 }

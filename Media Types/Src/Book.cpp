@@ -125,19 +125,19 @@ bool Book::operator<(Book &rhs) {
     return false;
 }
 
-void Book::print() {
-    cout << fixed;
-    cout << setprecision(2);
-    cout << "Title: " << title << endl;
-    cout << "Authors: ";
+void Book::print(ofstream& outfile) {
+    outfile << fixed;
+    outfile << setprecision(2);
+    outfile << "Title: " << title << endl;
+    outfile << "Authors: ";
     for (int i = 0; i < 3; ++i) {
-        cout << authors[i] << endl << "\t";
+        outfile << authors[i] << endl << "\t";
     }
-    cout << endl << "Description: " << description << endl;
-    cout << published_year << " Number of pages: " << num_pages << " Rating: " << average_rating << " (" << ratings_count << ")" << endl;
-    cout << "ISBN: " << isbn13 << endl;
+    outfile << endl << "Description: " << description << endl;
+    outfile << published_year << " Number of pages: " << num_pages << " Rating: " << average_rating << " (" << ratings_count << ")" << endl;
+    outfile << "ISBN: " << isbn13 << endl;
     for (int i = 0; i < 2; ++i) {
-        cout << genres[i] << " ";
+        outfile << genres[i] << " ";
     }
-    cout << endl << "---------------------" << endl;
+    outfile << endl << "---------------------" << endl;
 }
