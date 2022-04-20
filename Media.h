@@ -97,47 +97,52 @@ struct heap {
 template <class T>
 struct MergeSort{
     vector<T*> m;
-    MergeSort(set<T*> data){
+    MergeSort(set<T*>& data, ofstream& outfile){
         for (auto i = data.begin(); i != data.end(); ++i) {
             m.push_back(*i);
+        }
+        int test = m.size() - 1;
+        mergeSort(m, 0, test);
+        for (int i = 0; i < m.size(); ++i) {
+            m.at(i)->print(outfile);
         }
     }
     MergeSort(){
 
     }
     // data to be sorted
-    void mergeSort(vector<T*> data, int l, int r);
-    void merge(vector<T*> data, int l, int mid, int r);
+    void mergeSort(vector<T *> &data, int l, int r);
+    void merge(vector<T *> &data, int l, int mid, int r);
 };
 
 
 // this code was taken from Professor Kapoor's Module 6 slides
 // this is to sort the data in alphabetical order
 template<class T>
-void MergeSort<T>::mergeSort(vector<T*> data, int l, int r) {
+void MergeSort<T>::mergeSort(vector<T *> &data, int l, int r) {
     if(l < r){
         int mid = l + (r - l) / 2;
         // call recursion on the list
-        mergeSort(data, left, mid);
-        mergeSort(data, mid + 1, right);
+        mergeSort(data, l, mid);
+        mergeSort(data, mid + 1, r);
         // once the data has been sorted, it needs to be merged
         merge(data, l, mid, r);
     }
 }
 
 template<class T>
-void MergeSort<T>::merge(vector<T*> data, int l, int mid, int r) {
+void MergeSort<T>::merge(vector<T *> &data, int l, int mid, int r) {
     // get starting points
     int n1 = mid - l + 1;
     int n2 = r - mid;
     // create the two sub arrays for merging
-    int X[n1], Y[n2];
+    vector<T*> X, Y;
 
     for(int i = 0; i < n1; i++){
-        X[i] = data[l + 1];
+        X.push_back(data.at(l + i));
     }
     for(int j = 0; j < n2; j++){
-        Y[j] = data[mid + 1 + j];
+        Y.push_back(data.at(mid + 1 + j));
     }
     // merge arrays X and Y
     int i, j, k;
@@ -146,36 +151,38 @@ void MergeSort<T>::merge(vector<T*> data, int l, int mid, int r) {
     k = l;
 
     while(i < n1 && j < n2){
-        if(X[i] <= Y[j]){
-            data[k] = X[i];
+        if(*X.at(i) < *Y.at(j)){
+            data.at(k) = X.at(i);
             i++;
         }
         else{
-            data[k] = Y[j];
+            data.at(k) = Y.at(j);
             j++;
         }
         k++;
     }
 
     while(i < n1){
-        data[k] = X[i];
+        data.at(k) = X.at(i);
         i++;
         k++;
     }
     while(j < n2){
-        data[k] = Y[j];
+        data.at(k) = Y.at(j);
         j++;
         k++;
     }
 }
 
+
 class Media {
     void books(int g, int r, int y, string& order);
     void movies(int g, int r, int y, string& order);
     void podcasts(int g, int r, string& order);
+    int sort;
 
 public:
-    Media(int m, int g, int r, int y, string& order);
+    Media(int m, int g, int r, int y, string& order, int sort);
 };
 
 #endif //MULTIMEDIA_SEARCH_MEDIA_H
