@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include "Media.h"
+#include <chrono>
 
 using namespace std;
 
@@ -92,7 +93,12 @@ int main() {
     cout << 0 << ". Heap sort" << endl;
     cout << 1 << ". Merge sort" << endl;
 
+    auto start = chrono::high_resolution_clock::now();
     Media(medium, g, r, pd, o, sort);
+    auto stop = chrono::high_resolution_clock::now();
+    
+    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+    cout << duration.count() << "microseconds" << endl;
 
 
     return 0;
