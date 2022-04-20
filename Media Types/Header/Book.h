@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ public:
     bool hasGenre(const string& target);
     bool hasAuthors(const string& target);
 
-    void print();
+    void print(ofstream& outfile);
 };
 
 

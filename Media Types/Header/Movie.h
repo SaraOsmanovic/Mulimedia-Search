@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ public:
     int& getReleaseDate();
     int& getVoteCount();
 
-    void print();
+    void print(ofstream& outfile);
 };
 
 

@@ -4,6 +4,8 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+
 using namespace std;
 
 class Podcast {
@@ -25,7 +27,7 @@ public:
     double& getRating();
     int& getRatingVolume();
 
-    void print();
+    void print(ofstream& outfile);
 };
 
 
