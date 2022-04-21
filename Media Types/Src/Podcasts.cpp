@@ -30,7 +30,7 @@ Podcasts::~Podcasts() {
 }
 
 void Podcasts::createGenres() {
-    fstream gens("Data/podcasts_genres.txt");
+    fstream gens("../Data/podcasts_genres.txt");
     while (gens.is_open()) {
         while (gens.good()) {
             string temp;
@@ -42,6 +42,7 @@ void Podcasts::createGenres() {
     }
 
     for (int i = 0; i < podcasts_list.size(); ++i) {
+        genres.emplace(podcasts_list.at(i)->getGenre(), vector<Podcast*>());
         genres.at(podcasts_list.at(i)->getGenre()).push_back(podcasts_list.at(i));
     }
 }
