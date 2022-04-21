@@ -15,13 +15,13 @@ int main() {
     cout << "1. Book" << endl << "2. Podcast" << endl << "3. Movie" << endl;
     cin >> medium;
     cout << "Assign priorities among genre, rating, and publication date: (type number 1-3 for priority rating)" << endl;
-    cout << "Genre: ";
+    cout << "Genre:";
     cin >> first;
     order.emplace(first, "g");
-    cout << "Rating: ";
+    cout << "Rating:";
     cin >> second;
     order.emplace(second, "r");
-    cout << "Publication date: ";
+    cout << "Publication date:";
     cin >> third;
     order.emplace(third, "y");
     string o;
@@ -89,16 +89,17 @@ int main() {
     }
     cin >> pd;
     int sort = 0;
-    cout << endl << "Choose your sorting algorithm: " << endl;
+    cout << "Choose your sorting algorithm: " << endl;
     cout << 0 << ". Heap sort" << endl;
     cout << 1 << ". Merge sort" << endl;
+    cin >> sort;
 
     auto start = chrono::high_resolution_clock::now();
     Media(medium, g, r, pd, o, sort);
     auto stop = chrono::high_resolution_clock::now();
     
     auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    cout << duration.count() << "microseconds" << endl;
+    cout << duration.count() << " microseconds" << endl;
 
 
     return 0;

@@ -16,9 +16,7 @@ struct heap {
             insertEl(*i);
         }
         while (s > 0) {
-            T* out = popMin();
-            out->print(outfile);
-            delete out;
+            popMin()->print(outfile);
         }
     }
     void insertEl(T* newEl) {
@@ -71,7 +69,7 @@ struct heap {
             }
         }
         if (*r > *l) {
-            if (h.at(i) > l) {
+            if (*h.at(i) > *l) {
                 T* temp = h.at(i);
                 h.at(i) = l;
                 h.at(i * 2 + 1) = temp;

@@ -78,7 +78,7 @@ void Media::books(int g, int r, int y, string& order) {
     set<Book*> pyr;
     ofstream outfile;
 
-    string genre = books_list->getGenresList().at(g);
+    string genre = books_list->getGenresList().at(g - 1);
     for (int i = 0; i < books_list->getGenres().at(genre).size(); ++i) {
        gen.insert(books_list->getGenres().at(genre).at(i));
     }
@@ -203,7 +203,7 @@ void Media::movies(int g, int r, int y, string &order) {
     set<Movie*> pyr;
     ofstream outfile;
 
-    string genre = movies_list->getGenreList().at(g);
+    string genre = movies_list->getGenreList().at(g - 1);
     for (int i = 0; i < movies_list->getGenres().at(genre).size(); ++i) {
         gen.insert(movies_list->getGenres().at(genre).at(i));
     }
@@ -328,7 +328,7 @@ void Media::podcasts(int g, int r, string &order) {
 
     string firstP, secondP;
 
-    string genre = podcasts_list->getGenreList().at(g);
+    string genre = podcasts_list->getGenreList().at(g - 1);
     for (int i = 0; i < podcasts_list->getGenres().at(genre).size(); ++i) {
         gen.insert(podcasts_list->getGenres().at(genre).at(i));
     }
